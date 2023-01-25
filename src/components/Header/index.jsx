@@ -5,6 +5,7 @@ function Header({ user, setUser }) {
     <div className="header">
         Welcome, { user }!
         <button
+          className="header__button--submit"
           type="button"
           onClick={() => setUser("")}>
             Logout
