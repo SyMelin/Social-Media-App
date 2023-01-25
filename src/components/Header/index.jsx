@@ -1,9 +1,14 @@
 import './Header.css';
 
-function Header() {
+function Header({ user, setUser }) {
   return (
     <div className="header">
-        header
+        Welcome, { user }!
+        <button
+          type="button"
+          onClick={() => setUser("")}>
+            Logout
+        </button>
     </div>
   );
 }
