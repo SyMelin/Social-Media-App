@@ -4,7 +4,6 @@ import './CreatePost.css';
 function CreatePost({ user, posts, setPosts }) {
   const [content, setContent] = useState("")
   const [image, setImage] = useState(null)
-  const imageInputRef = useRef()
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -16,7 +15,7 @@ function CreatePost({ user, posts, setPosts }) {
     const newPosts = [post, ...posts]
     setPosts(newPosts)
     setContent("")
-    imageInputRef.current.value = ""
+    setImage(null)
   }
 
   return (
@@ -37,7 +36,6 @@ function CreatePost({ user, posts, setPosts }) {
           className="createPost__form-input"
           type="file"
           onChange={(e) => setImage(e.target.files[0])}
-          ref={imageInputRef}
         />
         <button
           className="createPost__button--submit"
