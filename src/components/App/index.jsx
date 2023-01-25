@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Login from '../Login'
 import Header from '../Header'
 import CreatePost from '../CreatePost'
@@ -13,6 +13,11 @@ function App() {
     document.title = user ? `${user}'s Feed` : 'Please login';
   }, [user])
 
+  //hook
+  const handleAddPost = useCallback((newPost) => {
+    setPosts([newPost, ...posts])
+  }, [posts])
+
   if (!user) {
     return <Login setUser={setUser} />
   }
@@ -25,8 +30,7 @@ function App() {
       />
       <CreatePost
         user={user}
-        posts={posts}
-        setPosts={setPosts}
+        handleAddPost={handleAddPost}
       />
       <PostList
         posts={posts}

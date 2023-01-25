@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import './CreatePost.css';
 
-function CreatePost({ user, posts, setPosts }) {
+function CreatePost({ user, handleAddPost }) {
   const [content, setContent] = useState("")
   const [image, setImage] = useState(null)
 
@@ -12,8 +12,7 @@ function CreatePost({ user, posts, setPosts }) {
       image,
       user,
     }
-    const newPosts = [post, ...posts]
-    setPosts(newPosts)
+    handleAddPost(post)
     setContent("")
     setImage(null)
   }
