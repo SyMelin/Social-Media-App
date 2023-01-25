@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Login from '../Login'
 import Header from '../Header'
 import CreatePost from '../CreatePost'
+import PostList from '../PostList'
 import './App.css'
 
 function App() {
@@ -27,21 +28,9 @@ function App() {
         posts={posts}
         setPosts={setPosts}
       />
-      {posts.map((post, index) => (
-        <React.Fragment
-          key={`post-${user}--${index}`}
-        >
-          {post.image && (
-              <img
-                style={{ width: 200, height: 100, objectFit:"cover"}}
-                src={URL.createObjectURL(post.image)}
-                alt="Post cover"
-              />
-          )}
-          <p>{post.content}</p>
-          <div>{user}</div>
-        </React.Fragment>
-      ))}
+      <PostList
+        posts={posts}
+      />
     </div>
   )
 }
