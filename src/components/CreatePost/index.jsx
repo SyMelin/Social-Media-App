@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { PostContext } from '../App';
 import './CreatePost.css';
 
-function CreatePost({ user, handleAddPost }) {
+function CreatePost({ user }) {
+  const { dispatch } = useContext(PostContext)
   const [content, setContent] = useState("")
   const [image, setImage] = useState(null)
 
@@ -11,15 +13,16 @@ function CreatePost({ user, handleAddPost }) {
       content,
       image,
       user,
+      id: Date.now(),
     }
-    handleAddPost(post)
+    dispatch({ type: "ADD_POST", payload: { post }})
     setContent("")
     setImage(null)
   }
 
   return (
     <div className="createPost">
-      <h1 className="createPost__title">Create New Form</h1>
+      <h1 className="createPost__title">Create New Post</h1>
       <form
         className="createPost__form"
         onSubmit={handleSubmit}
@@ -36,12 +39,14 @@ function CreatePost({ user, handleAddPost }) {
           type="file"
           onChange={(e) => setImage(e.target.files[0])}
         />
-        <button
-          className="createPost__button--submit"
-          type="submit"
-        >
-          Submit Post
-        </button>
+        <div className="post__button-wrapper">
+          <button
+            className="createPost__button--submit"
+            type="submit"
+          >
+            Submit Post
+          </button>
+        </div>
       </form>
     </div>
   );
