@@ -8,7 +8,7 @@ function PostList({ posts}) {
       {posts.map((post, index) => (
         <Post
           key={`post-${post.user}--${index}`}
-          post = {post}
+          post={post}
         />
       ))}
     </div>
