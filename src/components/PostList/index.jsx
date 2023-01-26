@@ -5,9 +5,9 @@ function PostList({ posts}) {
 
   return (
     <div className="postList">
-      {posts.map((post, index) => (
+      {posts.map((post) => (
         <Post
-          key={`post-${post.user}--${index}`}
+          key={post.id}
           post={post}
         />
       ))}

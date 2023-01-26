@@ -1,10 +1,15 @@
 import { useContext } from 'react';
-import { UserContext } from '../App'
+import { UserContext, PostContext } from '../App'
 import './Post.css'
 
 function Post({ post }) {
   const currentUser = useContext(UserContext)
+  const { dispatch } = useContext(PostContext)
   const isCurrentUser = currentUser === post.user
+
+  function handleDeletePost() {
+    dispatch({ type: "DELETE_POST", payload: { id: post.id } })
+  }
 
   return (
     <div className="post">
@@ -23,6 +28,15 @@ function Post({ post }) {
       >
         {post.user}
       </div>
+      { isCurrentUser &&
+          <button
+            className="post__button--delete"
+            type="button"
+            onClick={handleDeletePost}
+          >
+            Delete
+          </button>
+      }
     </div>
   )
 }
